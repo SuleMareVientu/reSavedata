@@ -12,7 +12,7 @@ project(reSavedata)
 set(SELF_NAME "resavedata")
 include("${VITASDK}/share/vita.cmake" REQUIRED)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,-q -Wall -O2 -nostdlib")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,-q -Wall -O3 -nostdlib")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti -fno-exceptions")
 
 add_executable(${PROJECT_NAME}
@@ -20,9 +20,11 @@ add_executable(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME}
-  SceDebugForDriver_stub
+  SceSysmemForDriver_stub
   SceSysclibForDriver_stub
+  SceSysrootForKernel_stub
   SceIofilemgrForDriver_stub
+  SceFios2KernelForDriver_stub
   taihenForKernel_stub
 )
 
